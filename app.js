@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const PORT = process.env.PORT || 3000;
 
 const hotelRouter = require("./routes/hotel");
 const userRouter = require("./routes/user");
@@ -27,15 +26,14 @@ const anotherLogger = (req, res, next) => {
 app.use(logger);
 app.use(anotherLogger);
 
-app.use("/api/users", userRouter);
-
 app.use("/api/hotels", hotelRouter);
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   console.log(req);
   res.send("Hello World");
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+  console.log(`Server is running on port 3000`);
 });
